@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: ab7df5dd0570c6a48986080edd92eb31
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Biko
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f0061193643d3b644a33086a7f351352, type: 3}
+  - {fileID: 12800000, guid: 160b7128c84f4b848a654b8af9e2fdf1, type: 3}
+  - {fileID: 12800000, guid: d0b71573f55a59d45b651f0c64f01b40, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
