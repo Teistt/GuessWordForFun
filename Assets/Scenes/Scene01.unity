@@ -357,7 +357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2014UNLIMITED\u2014"
+  m_text: "\u2014FOR FUN\u2014"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96.95
+  m_fontSize: 106.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME'S UP
+  m_text: GUESS WORD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME'S UP
+  m_text: GUESS WORD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
@@ -3850,7 +3850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2014UNLIMITED\u2014"
+  m_text: "\u2014FOR FUN\u2014"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
@@ -6148,7 +6148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME'S UP
+  m_text: GUESS WORD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
@@ -6175,7 +6175,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.9
+  m_fontSize: 101.1
   m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6362,7 +6362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2014UNLIMITED\u2014"
+  m_text: "\u2014FOR FUN\u2014"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}

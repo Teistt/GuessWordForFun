@@ -411,10 +411,10 @@ RectTransform:
   m_Father: {fileID: 511086304}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 72.5, y: -72.5}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127668641
 MonoBehaviour:
@@ -564,10 +564,10 @@ RectTransform:
   m_Father: {fileID: 812421459}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.4513, y: -268.71927}
+  m_SizeDelta: {x: 914.9026, y: 64.046104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142108799
 MonoBehaviour:
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2014UNLIMITED\u2014"
+  m_text: "\u2014FOR FUN\u2014"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.05
+  m_fontSize: 64
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &401873454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1203,10 +1203,10 @@ RectTransform:
   m_Father: {fileID: 812421459}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.4513, y: -118.348114}
+  m_SizeDelta: {x: 914.9026, y: 236.69623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455259737
 MonoBehaviour:
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' TIME''S UP '
+  m_text: GUESS WORD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 168.95
+  m_fontSize: 123.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1364,7 +1364,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 33.99996}
-  m_SizeDelta: {x: 320, y: 145}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511086305
 MonoBehaviour:
@@ -2440,10 +2440,10 @@ RectTransform:
   m_Father: {fileID: 511086304}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 247.5, y: -72.5}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851769506
 MonoBehaviour:
@@ -3361,7 +3361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1020170506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3546,10 +3546,10 @@ RectTransform:
   m_Father: {fileID: 1088710555}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1649.3572, y: -50.53005}
-  m_SizeDelta: {x: 541.2857, y: 101.0601}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1029071628
 MonoBehaviour:
@@ -4273,7 +4273,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 695.0514, y: 189.55946}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427240552
 MonoBehaviour:
@@ -4456,10 +4456,10 @@ RectTransform:
   m_Father: {fileID: 2104483271}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 457.4513, y: -270.8603}
-  m_SizeDelta: {x: 914.9026, y: 59.764038}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493081825
 MonoBehaviour:
@@ -4481,7 +4481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2014UNLIMITED\u2014"
+  m_text: "\u2014FOR FUN\u2014"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 7eb11b54a79e2d648a96e2162540728d, type: 2}
@@ -4508,7 +4508,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.75
+  m_fontSize: 60.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4652,10 +4652,10 @@ RectTransform:
   m_Father: {fileID: 2104483271}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 457.4513, y: -120.489136}
-  m_SizeDelta: {x: 914.9026, y: 240.97827}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567332888
 MonoBehaviour:
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME'S UP
+  m_text: GUESS WORD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
   m_sharedMaterial: {fileID: 7154258066846304764, guid: 11cb91aab2f082e4e8884d367fd437aa, type: 2}
@@ -4724,7 +4724,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 178.9
+  m_fontSize: 123.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5324,10 +5324,10 @@ RectTransform:
   m_Father: {fileID: 1088710555}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 253.5, y: -50.53005}
-  m_SizeDelta: {x: 507, y: 101.0601}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959839312
 MonoBehaviour:
@@ -5480,10 +5480,10 @@ RectTransform:
   m_Father: {fileID: 1088710555}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 942.8572, y: -50.53005}
-  m_SizeDelta: {x: 871.71436, y: 101.0601}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1969737103
 MonoBehaviour:
