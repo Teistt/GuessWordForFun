@@ -1,4 +1,4 @@
-# TimesUpForFun
+# Guess Word For Fun
 ## Overview
 It's a little Find Word game I made for fun. I just want to improve on Unity.
 The goal is to make his teammates guess as many words as possible in a given time. The first round by describing them, then with a single word, the last by mimicking them.
