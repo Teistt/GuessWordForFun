@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class CardsBP
 {
+    //Making sure
     public int id;
     public string word;
     //Enregistre l'ID de la team qui a gagné cette carte pour chacune des manches
