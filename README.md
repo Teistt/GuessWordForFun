@@ -40,8 +40,12 @@ I also carried a great interest to do a responsive UI in 1920x1080 while being c
 And yes I know there is a lot of French (or English) text. I'm planning to correct this as soon as possible.
 
 # Links!!
-Android apk -possible display of an "alert message" saying that Google does not know me- : Soon. For now, build it.
+All builds are available here: https://teist.itch.io/guesswordforfun
+Available:
+Unity Game Files
 
-Windows x86_x64 setup: Soon. For now, build it.
+Setup for windows
 
-A link to play directly on a browser will arrive later, for now I have very ugly error messages which are not beautiful (StreamingAssets on Android have been corrected, not WebGL... yet)
+Android apk: it's possible that Android devices display an "alert message" saying that Google does not know me as a developper. Which is true. For now if you are not confident, you can just use the windows version or rebuild the apk from the Unity Project Sources: https://github.com/Teistt/GuessWordForFun
+
+I'm currently working on making a webGL version
