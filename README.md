@@ -12,8 +12,11 @@ The main interest of this project is to be able to adapt several parameters, sta
 
 Last, do not forget it's a little side project still in work in progress and, and even if I paid special attention to it, bugs are to expect. Moreover, features, UI, and texts are subject to change in the future. I.e., the timer is not configurable yet.
 
+## Add A cards List!
+For windows, you can simply add or delete words in the already extisting lists in Assets/StreamingAssets/dictionnaries/ with a text editor.
+
+But you can also add new lists, while for now you will need to download this Project's sources and open them on Unity (last version used is 2020.3.16f1)
 For example, to add a Celebrities list:
-You will need to download this Project's sources and open them on Unity (last version used is 2020.3.16f1)
 
 - Go to Assets/StreamingAssets/dictionnaries/
 - Add a "celebs.xml" file with a simple name in lowercase (very important, it can generate bugs with the BetterStreamingAssets plugin)
@@ -44,10 +47,10 @@ And yes I know there is a lot of French (or English) text. I'm planning to corre
 # Links!!
 All builds are available here: https://teist.itch.io/guesswordforfun
 Available:
+WebGL version to play in browser
+
 Unity Game Files
 
 Setup for windows
 
-Android apk: it's possible that Android devices display an "alert message" saying that Google does not know me as a developper. Which is true. For now if you are not confident, you can just use the windows version or rebuild the apk from the Unity Project Sources: https://github.com/Teistt/GuessWordForFun
-
-I'm currently working on making a webGL version
+Android apk: it's possible that Android devices display an "alert message" saying that Google does not know me as a developper. Which is true. For now if you are not confident, you can just use the windows version or rebuild the apk from this Unity Project Sources.
