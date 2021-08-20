@@ -1,14 +1,16 @@
 # Guess Word For Fun
 ## Overview
-It's a little Find Word game I made for fun. I just want to improve on Unity.
-The goal is to make his teammates guess as many words as possible in a given time. The first round by describing them, then with a single word, the last by mimicking them.
+It's a little Find Word game -similar to Charade- I made for fun and to improve my skills on Unity.
 
-The main interest of this project is to be able to adjust the number of teams and the number of words, and later the rounds timer (for now only 10 seconds, which is not much).
+The game is divided into 3 rounds and the goal is to make your teammate(s) guess as many words as possible in a given time.
 
-## Adding a list of words
-One other big interest is that all the words are listed in simple xml files, like "dictionnaries" so anybody can go and add some whenever he wants.
-The deck system will go through these lists and randomly draw a given number of words. Thanks to that, adding a new "dictionnary" which can be either a language or a specific theme (i.e. Celebrities) is really simple and doesn't even require coding.
-But for now, it does require to rebuild the game through Unity. I plan to make this even simpler later.
+The game starts with a random set of a determined number of cards. All the 3 rounds will be using the same cards.
+
+In each round, one teammate will try to make guess his other teammate(s) as many cards as possible in a fixed time. Once a card is guessed, it's removed from the round. After the end of the timer, if cards remain unguessed for the round, it's to the next team to play. Make sure to alternate the players who have to make guessing within the teams.
+
+The main interest of this project is to be able to adapt several parameters, starting from the number of teams or the number of playing cards, to the drawn words themselves. Indeed, the words are listed in simple .xml files.
+
+Last, do not forget it's a little side project still in work in progress and, and even if I paid special attention to it, bugs are to expect. Moreover, features, UI, and texts are subject to change in the future. I.e., the timer is not configurable yet.
 
 For example, to add a Celebrities list:
 You will need to download this Project's sources and open them on Unity (last version used is 2020.3.16f1)
@@ -17,7 +19,7 @@ You will need to download this Project's sources and open them on Unity (last ve
 - Add a "celebs.xml" file with a simple name in lowercase (very important, it can generate bugs with the BetterStreamingAssets plugin)
 - File this list as you like. One word per line
 
-![path](https://i.ibb.co/ZNRWynr/image.png)
+![path](https://i.ibb.co/F6FBRFR/image.png)
 
 - On the Unity Editor, add a button in the appropriate UI panel. Despite the sprite, make sure it has the same properties as the "fr" and "en' buttons. Duplicate one of them is cool.
 

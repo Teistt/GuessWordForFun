@@ -1,35 +1,33 @@
-using System;
 using System.Text;
-using System.Security.Cryptography;
 using System.Linq;
-using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-
+    //Singleton
     #region Singleton
-    //On créé un BM pour y lier ce BM
+    //GameController construction to link this one
     public static GameController instance;
 
-    //Singleton: permet d'accèder au build manager depuis n'importe où sans avoir à le définir à chaque fois
+    //Singleton: allow to have only one of GameController created
     private void Awake()
     {
-        //On vérifie si un build manager a déjà été instantié
+        //Check if a GameController already exist
         if (instance != null)
         {
-            //Si oui, erreur
             Debug.LogError("double GameController");
             return;
         }
-        //Sinon on instantie ce BM
+        //If there is not GameController already created, create this one
         instance = this;
     }
     #endregion
 
+    //Round number
     private int mancheNumber;
     public int _mancheNumber { get { return mancheNumber; } set { mancheNumber = value; } }
 
@@ -56,13 +54,16 @@ public class GameController : MonoBehaviour
     private bool launchedTimer = false;
     private bool changedTeam = false;
     private bool pointsCalculated = false;
-    
-    
 
-    private void Start()
+    private string dictionnary=null;
+    private bool isLoaded = false;
+
+    private void  OldStart()
     {
-        //BetterStreamingAssets inialization. SSe DictionnaryPath()
+        //BetterStreamingAssets inialization. See DictionnaryPath()
+        
         BetterStreamingAssets.Initialize();
+        
         NewDictionnaryRead();
         mainUIController = MainUIController.instance;
 
@@ -74,93 +75,151 @@ public class GameController : MonoBehaviour
 
         baseChrono = GameSettings._baseChrono;
         chrono = baseChrono;
-        //Debug.Log("manche number: " + mancheNumber + " , state number: " + stateNumber);
+        //Debug.Log("round number: " + mancheNumber + " , state number: " + stateNumber);
 
         //On récupère tous les mots existant dans le dico du jeu
+        //All words listed in the GameSettings._langue dictionnary are separated in a string array
         string[] cards = ParseFile();
         deck.Capacity = cards.Length;
 
-        //On remplit la liste à partir du tableau cards
+        //We fill the deck List based on the cards array
         for (int i = 0; i < cards.Length; i++)
         {
             deck.Add(new CardsBP() { word = cards[i], id = i});
         }
 
-        //On mélange toutes les cartes tirées
+        //We shuffle the deck list, aka mix games cards
         ShuffleDeck(deck);
 
 
-        //On supprime les dernières cartes de la List Deck pour avoir le nombre de cartes défini dans GameSettings
+        //And we remove the end of the deck list according to only have the number of cards as stated in GameSettings._cardsNumber
         deck.RemoveRange(cardsInGame, deck.Count - cardsInGame);
 
+        //We duplicate the game's deck in order to manipulate a "round" deck, since all rounds will be based on the same deck
         deck.ForEach(val => { deckRound.Add(val); });
+
+        //We can go to Round 1
+        mancheNumber=1;
+    }
+    
+    IEnumerator  Start()
+    {
+        //BetterStreamingAssets inialization. See DictionnaryPath()
+
+        mainUIController = MainUIController.instance;
+
+        mancheNumber = 0;
+        stateNumber = 0;
+        cardsInGame = GameSettings._cardsNumber;
+        teamsInGame = GameSettings._teamsNumber;
+        teamIndex = 0;
+
+        baseChrono = GameSettings._baseChrono;
+        chrono = baseChrono;
+
+        BetterStreamingAssets.Initialize();
+        
+        yield return NewDictionnaryRead();
+        //Debug.Log("round number: " + mancheNumber + " , state number: " + stateNumber);
+
+        //On récupère tous les mots existant dans le dico du jeu
+        //All words listed in the GameSettings._langue dictionnary are separated in a string array
+        string[] cards = ParseFile();
+        deck.Capacity = cards.Length;
+
+        //We fill the deck List based on the cards array
+        for (int i = 0; i < cards.Length; i++)
+        {
+            deck.Add(new CardsBP() { word = cards[i], id = i});
+        }
+
+        //We shuffle the deck list, aka mix games cards
+        ShuffleDeck(deck);
+
+
+        //And we remove the end of the deck list according to only have the number of cards as stated in GameSettings._cardsNumber
+        deck.RemoveRange(cardsInGame, deck.Count - cardsInGame);
+
+        //We duplicate the game's deck in order to manipulate a "round" deck, since all rounds will be based on the same deck
+        deck.ForEach(val => { deckRound.Add(val); });
+
+        //We can go to Round 1
         mancheNumber=1;
     }
 
     void Update()
     {
-        //Pour chaque manche, on switchera d'UI suivant l'état
-        //State 0: uniquement avant manche 1, écran prêt à lancer le jeu
-        //State 1: écran des règles
-        //State 2: écran de jeu avec cartes et timer
-        //State 3: tjrs dans la même manche, écran avant de changer de team
-        //State 4: uniquement après fin manche, récap points totaux
-        //State 5: uniquement après manche 4, écran de fin du jeu et de victoire
+        //For each round, we will switch unity's panel according to the state of the round
+        //State 0: only for round 1, ready to launch game screen
+        //State 1: Rules of the round
+        //State 2: screen game with cards, skip and check buttons
+        //State 3: screen recap cards and to change team (if deckRound not empty and timer <=0)
+        //State 4: screen recap points and to next round (if deckRound empty)
+        //State 5: only after round 3, screen victory screen
 
         switch (stateNumber)
         {
-            //Case 0: uniquement avant manche 1, écran prêt à lancer le jeu
+            //Case 0: only for round 1, ready to launch game screen
             case 0:
                 break;
 
-            //Case 1: écran des règles
+            //Case 1: Rules of the round
             case 1:
+                //Update case 1 panel only one time
                 if (c1Displayed) { 
                     break;
                 }
                 c1Displayed = true;
+
+                //Reset pointsCalculated in anticipation of previous case 4
                 pointsCalculated = false;
+
+                //Update Rule Text according to round number and teamButton text according to team order to play
                 mainUIController.C1Display(mancheNumber, teamIndex);
                 
                 break;
 
-            //Case 2: écran de jeu avec cartes et timer
+            //Case 2: screen game with cards, skip and check buttons
             case 2:
-                Debug.Log("state 2");
+                //Reset c1Displayed in anticipation of future case 1
                 c1Displayed = false;
                 pointsCalculated = false;
 
+                //Launch timer only once
                 if (launchedTimer)
                 {
-                    Debug.Log("launched timer");
-                    //La manche a commencé
+                    //the round has started
+
+                    Debug.Log("timer launched");
+                    //update timer since last frame
                     chrono -= Time.deltaTime;
 
                     if (chrono <= 0)
                     {
-                        //On check si il reste des cartes à valider dans le deckM1
-                        //(spoiler si on arrive ici il en reste, mais on check quand même paske merde)
+                        //We check if deckRound is empty
+                        //(it shouldn't happen at all)
                         if (deckRound.Count == 0)
                         {
-                            //Si on est pas à la 3e manche
+                            //If we are not at the last round go to state 4
                             if (mancheNumber < 3)
                             {
-                                //On passe au case 4 corresponant aux règles de la manche suivante; autrement dit on saute le case3
+                                //Go to state 4 to recap present round and access next round
                                 mainUIController.GoToState(4);
                             }
+                            //else go to state 5
                             else
                             {
-                                //Sinon on passe au case 5, aka la fin du game
+                                //Go to victory screen
                                 mainUIController.GoToState(5);
                             }
                             
                         }
 
-                        //Sinon on charge le case3 pour la prochaine team
-                        //Le case3 renverra au case2
+                        //If deckRound is not empty, go to state 3 for next team turn
                         else
                         {
                             //Debug.Log("deckM1.Count!=0");
+                            //We update stae 3 recap text before emptying deckroundwin
                             mainUIController.RecapMancheTxt(deckRoundWin);
                             ResetDeckRoundWin();
                             mainUIController.GoToState(3);
@@ -168,13 +227,15 @@ public class GameController : MonoBehaviour
                         break;
                     }
 
+                    //While there is time for the team's round, display current word
                     mainUIController.CardMancheTxt(deckRound[cardIndex].word);
 
                 }
                 else
                 {
+                    //If first frame of the state 2, we launch timer with the GameSettings._baseChrono value
 
-                    Debug.Log("!launched timer");
+                    //Reset changedTeam for a possible future state 3 or 4
                     //On active un éventuel changement d'équipe à la fin du timer
                     changedTeam = false;
                     //Quand on débute la première manche, on lance le timer
@@ -182,9 +243,10 @@ public class GameController : MonoBehaviour
                     launchedTimer = !launchedTimer;
                 }
 
+                //Refresh timer display
                 mainUIController.UpdateTimerManche(chrono);
-
-                Debug.Log("coucou");
+                
+                //If first frame of state 2, update round number and team playing display
                 if (c2Displayed)
                 {
                     break;
@@ -194,11 +256,11 @@ public class GameController : MonoBehaviour
 
                 break;
 
-            //Case 3: tjrs dans la même manche, écran avant de changer de team
+            //Case 3: screen recap cards and to change team (if deckRound not empty and timer <=0)
             case 3:
 
-                Debug.Log("wesh state 3");
-                //on ne change d'équipe que lors du passage de la première Update()
+                Debug.Log("state 3");
+                //We change team only for this first state 3 call
                 if (changedTeam)
                 {
                     break;
@@ -211,7 +273,7 @@ public class GameController : MonoBehaviour
 
                 break;
 
-            //Case 4: uniquement après fin manche 1 et 2, récap points totaux
+            //Case 4: screen recap points and to next round (if deckRound empty)
             case 4:
                 if (pointsCalculated)
                 {
@@ -222,6 +284,7 @@ public class GameController : MonoBehaviour
                 pointsCalculated = true;
                 mainUIController.RecapPoints(mancheNumber, teamsInGame,deck);
 
+                //Prepare for next round, reset chrono
                 ResetDeckRoundWin();
                 ShuffleDeck(deck);
                 RefillDeckRound();
@@ -230,9 +293,13 @@ public class GameController : MonoBehaviour
                 
                 break;
 
-            //Case 5: uniquement après manche 3, écran de fin du jeu et de victoire
+            //Case 5: only after round 3, screen victory screen
             case 5:
-                if (pointsCalculated) break;
+                if (pointsCalculated)
+                {
+                    break;
+                }
+
                 pointsCalculated = true;
                 mainUIController.RecapPoints(mancheNumber, teamsInGame, deck);
 
@@ -255,33 +322,30 @@ public class GameController : MonoBehaviour
         stateNumber = sstate;
     }
 
-
+    //Increase Round number, if we are at the round3 just go to victory screen; else go back to rules screen
     public void NextManche()
     {
-        
         if (_mancheNumber >= 3)
         {
             GoToState(5);
         }
+
         else
         {
             mancheNumber++;
             stateNumber = 1;
         }
-        
-        //Reremplir deckRound et vider deckRoundWin
     }
 
     private void ChangeTeamRound()
     {
-        //On est sorti d'une manche, on reset le chrono et la booleenne associée
-        //On récap les scores de la team précédente de la manche 1
-        //Avant de retourner au case 2 pour la prochaine team
+        //State 2's Timer is 0 and deckRound is not empty, so it's at an other team to play
         chrono = baseChrono;
         launchedTimer = !launchedTimer;
         cardIndex = 0;
 
-        //Si il y a x équipes, leurs ID iront de 0 à X-1
+        //With X équipes, ID's will be from 0 to X-1
+        //So Team 1 index's is actually 0
         if (teamIndex >= (teamsInGame - 1))
         {
             teamIndex = 0;
@@ -295,6 +359,8 @@ public class GameController : MonoBehaviour
 
     public void SkipCard()
     {
+        //State2 button's skip call MainUIController.SkipCard() which call this ftc
+        //display the next card in the deckRound List
         if (cardIndex >= (deckRound.Count - 1))
         {
             cardIndex = 0;
@@ -308,11 +374,16 @@ public class GameController : MonoBehaviour
 
     public int CheckCard()
     {
-        //Quand on appuie sur le bouton check de la carte
-        //on lance MainUIController.CheckCard() qui vient lancer cette fonction
-        //Si après avoir validé la carte le deckRound est vide on retourne la manche
-        //Actuelle afin de passer à la suivante
-        //Sinon on retourne 0
+        //State2 button's check card call MainUIController.CheckCard() which call this ftc
+        //When a card is checked, we save the current teamIndex on the appropriate cardBP's field
+        //For example if team 2 (teamIndex=1) check a card in round 2
+        //We save 1 on the M2_win field's card
+
+        //Then we add this card to deckRoundWin and remove it from deckRound
+        //We check cardIndex is not out of bound
+
+        //If deckRound is empty we return the actual round to MainUIController.CheckCard() in order to go to next round
+        //Else we return 0
         switch (mancheNumber)
         {
             case 1:
@@ -376,6 +447,7 @@ public class GameController : MonoBehaviour
         return 0;
     }
 
+    //Clear deckRound then clone it from deck
     private void RefillDeckRound()
     {
         deckRound.Clear();
@@ -383,12 +455,14 @@ public class GameController : MonoBehaviour
         deckRound.ForEach(val => Debug.Log(val.word));
     }
     
+    //Clear deckRound
     private void ResetDeckRoundWin()
     {
         deckRoundWin.Clear();
     }
 
 
+    //Reload the activeScene; called from state 5's relaunch button
     public void Relaunch()
     {
         //Reset score
@@ -397,24 +471,95 @@ public class GameController : MonoBehaviour
 
 
     #region DECK_BUILDING
-    
-    
-    string NewDictionnaryRead()
+
+    IEnumerator UserDetailsXmlPath(string filePath)
     {
+
+        //filePath = "StreamingAssets/myFile.txt"; //This works because index.html is in the same folder as StreamingAssets ?
+
+        Debug.Log("biz");
+
+        UnityWebRequest uwr = UnityWebRequest.Get(filePath);
+
+        //UnityWebRequestAsyncOperation async = uwr.SendWebRequest();
+
+        uwr.SendWebRequest();
+
+        Debug.Log("uwr request sent");
+
+        while (!uwr.isDone) {
+            Debug.Log("not done yet");
+            yield return null;
+        }
+
+        Debug.Log("UWR1 : ");
+
+
+        if (uwr.isNetworkError || uwr.isHttpError)
+        {
+            Debug.Log("Error: " + uwr.error);
+            Debug.Log("Response Code: " + uwr.responseCode);
+        }
+        else
+        {
+            Debug.Log("load done");
+            dictionnary =uwr.downloadHandler.text;
+            isLoaded = true;
+
+            //yield return uwr.isDone;
+        }
+         //yield return uwr.isDone;
+    }
+
+    IEnumerator WaitingXmlFile(string filePath)
+    {
+        Debug.Log("waiting...");
+
+        yield return StartCoroutine(UserDetailsXmlPath(filePath));
+
+        Debug.Log("waiting done");
+    }
+
+    IEnumerator NewDictionnaryRead()
+    { 
+        //string text;
         //Using BetterStreamingAssets plugin.
         //Precaution: keep all file names in StreamingAssets lowercase
 
         //BetterStreamingAssets.Initialize() done in Start().
         //All paths are relative to StreamingAssets directory. So we want "dictionnaries/en.xml"
 
+        
+        
         string path = "dictionnaries/"+GameSettings._langue+".xml";
-        byte[] data = BetterStreamingAssets.ReadAllBytes(path);
-        //Debug.Log(BetterStreamingAssets.ReadAllText(path));
-        string text = Encoding.UTF8.GetString(data,0,data.Length);
-        //Debug.Log(text);
-        return text;
-    }
+        string webPath = Application.streamingAssetsPath + "/" + path;
+        Debug.Log("StreamingAssets root: " + BetterStreamingAssets.Root + "\n");
+        Debug.Log("application absolute URL: " + Application.absoluteURL+ "\n");
+        Debug.Log("application data path: " + Application.dataPath+ "\n");
+        Debug.Log("application streamingasset path: " + Application.streamingAssetsPath+ "\n");
 
+        if (webPath.Contains("://")|| webPath.Contains(":///"))
+        {
+            
+            Debug.Log("COUCOU");
+            dictionnary = null;
+            //StartCoroutine(UserDetailsXmlPath(webPath,));
+            yield return StartCoroutine(WaitingXmlFile(webPath));
+
+            //text = dictionnary;
+            Debug.Log("text: " + dictionnary);
+            //dictionnary = null;
+
+        }
+        else
+        {
+            byte[] data = BetterStreamingAssets.ReadAllBytes(path);
+            //Debug.Log(BetterStreamingAssets.ReadAllText(path));
+            dictionnary = Encoding.UTF8.GetString(data, 0, data.Length);
+            //Debug.Log(text);
+        }
+        //return text;
+    }
 
     string DictionnaryPath()
     {
@@ -428,10 +573,10 @@ public class GameController : MonoBehaviour
     string[] ParseFile()
     {
         //string text = File.ReadAllText(DictionnaryPath());
-        string text = NewDictionnaryRead();
+        //string text = NewDictionnaryRead();
 
         char[] separators = { '\n' };
-        string[] strValues = text.Split(separators);
+        string[] strValues = dictionnary.Split(separators);
         
         return strValues;
     }
@@ -439,10 +584,9 @@ public class GameController : MonoBehaviour
 
     void ShuffleDeck(List<CardsBP> bp)
     {
-        //Obligé de déclarer using System et de spécifier de prendre System.Random() sinon le compiler ne sait pas si
-        //Il doit utiliser le random de Unity (static) ou celui du System
+        //Need to specify System.Random or compiler doesn't know if using System's or Unity's random
         var rand = new System.Random();
-        //OrderBy appartien à System.Linq
+
         var randomized = deck.OrderBy(item => rand.Next());
 
         List<CardsBP> listTemp = new List<CardsBP>();
