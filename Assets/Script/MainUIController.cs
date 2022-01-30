@@ -44,6 +44,8 @@ public class MainUIController : MonoBehaviour
 
     public Text recapCardChangeTeam;
 
+
+
     //Pour chaque équipes on va compter le nbre d'éléments dans deck avec M1Win correspondant à l'id de la team
     private int[] pointsPerTeams = new int[GameSettings._teamsNumber];
 
@@ -77,8 +79,8 @@ public class MainUIController : MonoBehaviour
     }
 
     public void C1Display(int mancheNumber, int teamIndex) {
-        mancheNumberCases[0].text = "Manche " + mancheNumber;
-        teamNumberCases[0].text = "Team " + (teamIndex + 1) + " GO!!";
+        //mancheNumberCases[0].text = "Manche " + mancheNumber;
+        //teamNumberCases[0].text = "Team " + (teamIndex + 1) + " GO!!";
 
         switch (mancheNumber)
         {

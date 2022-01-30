@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
 
     private int cardIndex=0;
     private int teamIndex=0;
+    public int _teamIndex { get { return teamIndex; } }
 
     float chrono;
 
@@ -56,51 +57,6 @@ public class GameController : MonoBehaviour
     private bool pointsCalculated = false;
 
     private string dictionnary=null;
-    private bool isLoaded = false;
-
-    private void  OldStart()
-    {
-        //BetterStreamingAssets inialization. See DictionnaryPath()
-        
-        BetterStreamingAssets.Initialize();
-        
-        NewDictionnaryRead();
-        mainUIController = MainUIController.instance;
-
-        mancheNumber = 0;
-        stateNumber = 0;
-        cardsInGame = GameSettings._cardsNumber;
-        teamsInGame = GameSettings._teamsNumber;
-        teamIndex = 0;
-
-        baseChrono = GameSettings._baseChrono;
-        chrono = baseChrono;
-        //Debug.Log("round number: " + mancheNumber + " , state number: " + stateNumber);
-
-        //On récupère tous les mots existant dans le dico du jeu
-        //All words listed in the GameSettings._langue dictionnary are separated in a string array
-        string[] cards = ParseFile();
-        deck.Capacity = cards.Length;
-
-        //We fill the deck List based on the cards array
-        for (int i = 0; i < cards.Length; i++)
-        {
-            deck.Add(new CardsBP() { word = cards[i], id = i});
-        }
-
-        //We shuffle the deck list, aka mix games cards
-        ShuffleDeck(deck);
-
-
-        //And we remove the end of the deck list according to only have the number of cards as stated in GameSettings._cardsNumber
-        deck.RemoveRange(cardsInGame, deck.Count - cardsInGame);
-
-        //We duplicate the game's deck in order to manipulate a "round" deck, since all rounds will be based on the same deck
-        deck.ForEach(val => { deckRound.Add(val); });
-
-        //We can go to Round 1
-        mancheNumber=1;
-    }
     
     IEnumerator  Start()
     {
@@ -118,11 +74,10 @@ public class GameController : MonoBehaviour
         chrono = baseChrono;
 
         BetterStreamingAssets.Initialize();
-        
-        yield return NewDictionnaryRead();
-        //Debug.Log("round number: " + mancheNumber + " , state number: " + stateNumber);
 
-        //On récupère tous les mots existant dans le dico du jeu
+        //We read all words in xml file
+        yield return NewDictionnaryRead();
+        
         //All words listed in the GameSettings._langue dictionnary are separated in a string array
         string[] cards = ParseFile();
         deck.Capacity = cards.Length;
@@ -504,7 +459,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("load done");
             dictionnary =uwr.downloadHandler.text;
-            isLoaded = true;
+            
 
             //yield return uwr.isDone;
         }
@@ -530,54 +485,32 @@ public class GameController : MonoBehaviour
         //All paths are relative to StreamingAssets directory. So we want "dictionnaries/en.xml"
 
         
-        
         string path = "dictionnaries/"+GameSettings._langue+".xml";
         string webPath = Application.streamingAssetsPath + "/" + path;
-        Debug.Log("StreamingAssets root: " + BetterStreamingAssets.Root + "\n");
-        Debug.Log("application absolute URL: " + Application.absoluteURL+ "\n");
-        Debug.Log("application data path: " + Application.dataPath+ "\n");
-        Debug.Log("application streamingasset path: " + Application.streamingAssetsPath+ "\n");
 
         if (webPath.Contains("://")|| webPath.Contains(":///"))
         {
             
             Debug.Log("COUCOU");
             dictionnary = null;
-            //StartCoroutine(UserDetailsXmlPath(webPath,));
             yield return StartCoroutine(WaitingXmlFile(webPath));
 
-            //text = dictionnary;
             Debug.Log("text: " + dictionnary);
-            //dictionnary = null;
 
         }
         else
         {
             byte[] data = BetterStreamingAssets.ReadAllBytes(path);
-            //Debug.Log(BetterStreamingAssets.ReadAllText(path));
             dictionnary = Encoding.UTF8.GetString(data, 0, data.Length);
-            //Debug.Log(text);
         }
-        //return text;
     }
-
-    string DictionnaryPath()
-    {
-        string dictionnaryRelativePath = Application.streamingAssetsPath;
-        dictionnaryRelativePath = dictionnaryRelativePath + "\\dictionnaries\\" + GameSettings._langue + ".xml";
-        //Debug.Log(dictionnaryRelativePath);
-        return dictionnaryRelativePath;
-    }
-
 
     string[] ParseFile()
     {
-        //string text = File.ReadAllText(DictionnaryPath());
-        //string text = NewDictionnaryRead();
-
         char[] separators = { '\n' };
         string[] strValues = dictionnary.Split(separators);
-        
+        //We empty dictionnary in order to free memory space
+        dictionnary = "";
         return strValues;
     }
 
@@ -594,13 +527,11 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < randomized.Count(); i++)
         {
-            //Debug.Log(randomized.ElementAt(i));
             do
             {
                 temp = randomized.ElementAt(i);
             } while (listTemp.Contains(temp));
             listTemp.Add(temp);
-            //Debug.Log(bp[i].word);
         }
         bp.Clear();
         listTemp.ForEach(val => { bp.Add(val); });

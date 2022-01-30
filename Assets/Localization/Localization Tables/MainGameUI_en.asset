@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGameUI_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 49b6e972f5ac5174095ee56bbdf1019b, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 537463533568
+    m_Localized: LAUNCH GAME WHEN YOU ARE READY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2329266008064
+    m_Localized: GO!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2655834517504
+    m_Localized: GAME COMPLETE!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2837317857280
+    m_Localized: Back To Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3041253306368
+    m_Localized: ANOTHER?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5948350574592
+    m_Localized: Team {global.teamNb} GO!!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 37666684055552
+    m_Localized: Round {global.round}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 42395493380096
+    m_Localized: Mime the word. You can hum or make sound effects, but you must not
+      speak.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41543139504128
+    m_Localized: You have to make your team guess the word. You cannot pronounce
+      similar words, translate nor spell them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42378854576128
+    m_Localized: Use only one word per card. Your teammates can only make one proposal,
+      if it's missed, move on to the next word.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00b052f56805000000b052f541220000

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: MainMenuUI
+  m_TableCollectionNameGuidString: eb3d8bab5c417ea4cafaa1c231b34957
+  m_Entries:
+  - m_Id: 7655829504
+    m_Key: PlayBtn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108193296384
+    m_Key: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181132242944
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1116088741888
+    m_Key: TeamNumberField
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1264881676288
+    m_Key: CardNumberField
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1472776548352
+    m_Key: BackBtn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2112013643776
+    m_Key: NbTeamInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2541581676544
+    m_Key: NbCardInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3390311673856
+    m_Key: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3498986090496
+    m_Key: CardsDeck
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1629553196840

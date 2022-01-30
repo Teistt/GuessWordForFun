@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainMenuUI_fr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: eb3d8bab5c417ea4cafaa1c231b34957, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 7655829504
+    m_Localized: JOUER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108193296384
+    m_Localized: OPTIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181132242944
+    m_Localized: QUITTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1116088741888
+    m_Localized: NOMBRE D'EQUIPES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1264881676288
+    m_Localized: NOMBRE DE CARTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1472776548352
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2112013643776
+    m_Localized: "2 joueurs par \xE9quipe min\nNombre min d'\xE9quipes {minTeamNumber}\nNombre
+      max d'\xE9quipes {maxTeamNumber}"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 2541581676544
+    m_Localized: 'Nombre min de cartes {minCardsNumber}
+
+      Nombre max de cartes
+      {maxCardsNumber}'
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 3390311673856
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3498986090496
+    m_Localized: DECK DE CARTES
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00b0d2bdeb01000000b012c24f020000

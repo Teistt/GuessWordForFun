@@ -10,13 +10,36 @@ public class TitleGameUI : MonoBehaviour
     public GameObject playSettingPanel;
     public InputField teamNumber;
     public InputField cardNumber;
-    public Text infoTextTeams;
-    public Text infoTextCards;
 
     private int minTeamNumber = 2;
     private int maxTeamNumber = 8;
     private int minCardsNumber = 10;
     private int maxCardsNumber = 100;
+
+    public int _minTeamNumber { get { return minTeamNumber; } }
+    public int _maxTeamNumber { get { return maxTeamNumber; } }
+    public int _minCardsNumber { get { return minCardsNumber; } }
+    public int _maxCardsNumber { get { return maxCardsNumber; } }
+
+
+    #region Singleton
+    //GameController construction to link this one
+    public static TitleGameUI instance;
+
+    //Singleton: allow to have only one of GameController created
+    private void Awake()
+    {
+        //Check if a GameController already exist
+        if (instance != null)
+        {
+            Debug.LogError("double titleGameUI");
+            return;
+        }
+        //If there is not GameController already created, create this one
+        instance = this;
+    }
+    #endregion
+
 
     private void Start()
     {
@@ -25,9 +48,6 @@ public class TitleGameUI : MonoBehaviour
         optionPanel.SetActive(false);
         teamNumber.text = GameSettings._teamsNumber.ToString();
         cardNumber.text = GameSettings._cardsNumber.ToString();
-
-        infoTextTeams.text = "Minimal Teams Number "+ minTeamNumber + "\n Maximal Teams Number " + maxTeamNumber;
-        infoTextCards.text = "Minimal Cards Number " + minCardsNumber + "\n Maximal Cards Number " + maxCardsNumber;
     }
 
     public void MainMenuButton()
